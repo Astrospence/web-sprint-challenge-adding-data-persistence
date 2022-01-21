@@ -4,11 +4,19 @@ const projectsHelpers = require('./model')
 const router = express.Router()
 
 router.post('/', (req, res, next) => {
-    console.log('post response here')
+    projectsHelpers.addProject(req.body)
+        .then(newProject => {
+            res.status(200).json(newProject)
+        })
+        .catch(next)
 })
 
 router.get('/', (req, res, next) => {
-    console.log('get response here')
+    projectsHelpers.getProjects()
+        .then(projects => {
+            res.status(200).json(projects)
+        })
+        .catch(next)
 })
 
 module.exports = router

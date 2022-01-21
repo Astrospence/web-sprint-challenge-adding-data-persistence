@@ -2,9 +2,8 @@ const db = require('../../data/dbConfig')
 
 const addResource = async (newResource) => {
     await db('resources').insert(newResource)
-    
-    const response = await db('*')
-        .from('resources')
+
+    const response = await db('resources')
         .where('resource_name', newResource.resource_name)
         .first()
 
@@ -12,10 +11,7 @@ const addResource = async (newResource) => {
 }
 
 const getResources = async () => {
-    const response = await db('*')
-        .from('resources')
-
-    return response
+    return await db('resources')
 }
 
 module.exports = {
