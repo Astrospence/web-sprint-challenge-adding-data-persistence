@@ -29,6 +29,7 @@ exports.up = function(knex) {
             .references('project_id')
             .inTable('projects')
             .onDelete('RESTRICT')
+            .onUpdate('CASCADE')
     })
     .createTable('project_resources', table => {
         table.increments('project_resources_id')
@@ -38,12 +39,14 @@ exports.up = function(knex) {
             .references('resource_id')
             .inTable('resources')
             .onDelete('RESTRICT')
+            .onUpdate('CASCADE')
         table.integer('project_id')
             .notNullable()
             .unsigned()
             .references('project_id')
             .inTable('projects')
             .onDelete('RESTRICT')
+            .onUpdate('CASCADE')
     })
 }
 
