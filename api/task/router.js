@@ -4,11 +4,19 @@ const tasksHelpers = require('./model')
 const router = express.Router()
 
 router.post('/', (req, res, next) => {
-    console.log('post response here')
+    tasksHelpers.addTask(req.body)
+        .then(response => {
+            res.status(200).json(response)
+        })
+        .catch(next)
 })
 
 router.get('/', (req, res, next) => {
-    console.log('get response here')
+    tasksHelpers.getTasks()
+        .then(response => {
+            res.status(200).json(response)
+        })
+        .catch(next)
 })
 
 module.exports = router

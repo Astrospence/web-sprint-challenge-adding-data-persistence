@@ -8,7 +8,17 @@ const addProject = async (newProject) => {
         .orderBy('project_id', 'desc')
         .first()
 
-    return response
+    if (response.project_completed === 0 || !response.project_completed) {
+        return {
+            ...response,
+            project_completed: false
+        }
+    } else {
+        return {
+            ...response,
+            project_completed: true
+        }
+    }
 }
 
 const getProjects = async () => {
